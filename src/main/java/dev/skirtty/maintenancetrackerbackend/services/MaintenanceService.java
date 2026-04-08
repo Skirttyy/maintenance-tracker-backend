@@ -46,8 +46,11 @@ public class MaintenanceService {
         return maintenanceDTO;
     }
 
-    public Page<Maintenance> getMaintenances (int page, int size, String type) {
+    public Page<Maintenance> getMaintenances (int page, int size, String type, String text) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("startDate").ascending());
+        if (type.equals("all")) {
+            return maintenanceRepository.findAll(pageable);
+        }
         return maintenanceRepository.findByRiskLevel(type, pageable);
     }
 }
