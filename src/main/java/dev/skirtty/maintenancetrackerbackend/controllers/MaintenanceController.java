@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/maintenances/")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:4173")
 public class MaintenanceController {
     private final MaintenanceService maintenanceService;
 
@@ -22,7 +22,7 @@ public class MaintenanceController {
     }
 
     @GetMapping("get/")
-    public Page<Maintenance> getByType (@RequestParam String type, @RequestParam int page, @RequestParam int size) {
-        return maintenanceService.getMaintenances(page, size, type);
+    public Page<Maintenance> getByType (@RequestParam String type, @RequestParam int page, @RequestParam int size, @RequestParam String content) {
+        return maintenanceService.getMaintenances(page, size, type, content);
     }
 }

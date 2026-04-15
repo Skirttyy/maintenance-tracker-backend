@@ -8,5 +8,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MaintenanceRepository extends JpaRepository<Maintenance, Long> {
-    Page<Maintenance> findByRiskLevel (String type, Pageable pageable);
+    Page<Maintenance> findByRiskLevelContainingIgnoreCase (String content, Pageable pageable);
+    Page<Maintenance> findByTypeContainingIgnoreCase (String content, Pageable pageable);
+    Page<Maintenance> findByProviderContainingIgnoreCase (String content, Pageable pageable);
+    Page<Maintenance> findByCommentsContainingIgnoreCase (String content, Pageable pageable);
+    Page<Maintenance> findByNotificationsContainingIgnoreCase (String content, Pageable pageable);
 }

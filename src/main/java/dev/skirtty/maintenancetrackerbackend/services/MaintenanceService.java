@@ -46,11 +46,21 @@ public class MaintenanceService {
         return maintenanceDTO;
     }
 
-    public Page<Maintenance> getMaintenances (int page, int size, String type, String text) {
+    public Page<Maintenance> getMaintenances (int page, int size, String type, String content) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("startDate").ascending());
-        if (type.equals("all")) {
-            return maintenanceRepository.findAll(pageable);
+        switch (type.toLowerCase()) {
+            case "notifications":
+                return maintenanceRepository.findByNotificationsContainingIgnoreCase(content, pageable);
+            case "risk-level":
+                return maintenanceRepository.findByRiskLevelContainingIgnoreCase(content, pageable);
+            case "comments":
+                return maintenanceRepository.findByCommentsContainingIgnoreCase(content, pageable);
+            case "provider":
+                return maintenanceRepository.findByProviderContainingIgnoreCase(content, pageable);
+            case "type":
+                return maintenanceRepository.findByTypeContainingIgnoreCase(content, pageable);
+            default:
+                return null;
         }
-        return maintenanceRepository.findByRiskLevel(type, pageable);
     }
 }
