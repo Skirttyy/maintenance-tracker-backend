@@ -59,6 +59,8 @@ public class MaintenanceService {
                 return maintenanceRepository.findByProviderContainingIgnoreCase(content, pageable);
             case "type":
                 return maintenanceRepository.findByTypeContainingIgnoreCase(content, pageable);
+            case "name":
+                return maintenanceRepository.findByNameContainingIgnoreCase(content, pageable);
             default:
                 return null;
         }

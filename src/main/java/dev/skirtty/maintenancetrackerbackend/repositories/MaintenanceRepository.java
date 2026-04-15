@@ -13,4 +13,5 @@ public interface MaintenanceRepository extends JpaRepository<Maintenance, Long> 
     Page<Maintenance> findByProviderContainingIgnoreCase (String content, Pageable pageable);
     Page<Maintenance> findByCommentsContainingIgnoreCase (String content, Pageable pageable);
     Page<Maintenance> findByNotificationsContainingIgnoreCase (String content, Pageable pageable);
+    Page<Maintenance> findByNameContainingIgnoreCase (String content, Pageable pageable);
 }
